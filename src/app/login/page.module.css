@@ -1,0 +1,193 @@
+﻿.page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 13% 18%, rgba(34, 211, 238, 0.13), transparent 31%),
+    radial-gradient(circle at 82% 12%, rgba(99, 102, 241, 0.18), transparent 34%),
+    radial-gradient(circle at 72% 86%, rgba(14, 165, 233, 0.1), transparent 30%),
+    linear-gradient(145deg, #030913 0%, #061426 48%, #091326 100%);
+}
+
+.page::before {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  content: '';
+  background-image:
+    linear-gradient(rgba(125, 211, 252, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.page::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0.015), transparent 24%, transparent 74%, rgba(255, 255, 255, 0.025));
+}
+
+.aurora,
+.auroraSecondary {
+  position: absolute;
+  z-index: -3;
+  width: 52vw;
+  height: 52vw;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.16;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.aurora {
+  top: -31vw;
+  left: -8vw;
+  background: #22d3ee;
+  animation: aurora-drift 18s ease-in-out infinite alternate;
+}
+
+.auroraSecondary {
+  right: -23vw;
+  bottom: -34vw;
+  background: #6366f1;
+  animation: aurora-drift-secondary 22s ease-in-out infinite alternate;
+}
+
+.scanBeam {
+  position: absolute;
+  z-index: -2;
+  top: -35%;
+  left: 44%;
+  width: 1px;
+  height: 170%;
+  opacity: 0.28;
+  background: linear-gradient(to bottom, transparent, rgba(103, 232, 249, 0.8), transparent);
+  box-shadow: 0 0 42px 10px rgba(34, 211, 238, 0.08);
+  transform: rotate(22deg);
+  animation: scan-drift 10s ease-in-out infinite alternate;
+}
+
+.loginCard {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 247, 255, 0.94));
+  box-shadow:
+    0 38px 100px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.loginCard::before {
+  position: absolute;
+  top: 0;
+  right: 12%;
+  left: 12%;
+  height: 1px;
+  content: '';
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.72), transparent);
+}
+
+.brandMark {
+  position: relative;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(34, 211, 238, 0.24);
+  border-radius: 15px;
+  color: #a5f3fc;
+  background: linear-gradient(145deg, rgba(8, 47, 73, 0.9), rgba(30, 41, 59, 0.98));
+  box-shadow: 0 12px 30px rgba(14, 116, 144, 0.2);
+}
+
+.brandMark::before {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  content: '';
+  border: 1px dashed rgba(103, 232, 249, 0.38);
+  border-radius: 999px;
+  animation: mark-spin 12s linear infinite;
+}
+
+.fieldShell {
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.fieldShell:focus-within {
+  border-color: rgba(14, 165, 233, 0.72);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+.submitButton {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(110deg, #075985, #0369a1 46%, #4338ca);
+  box-shadow: 0 15px 34px rgba(2, 132, 199, 0.26);
+}
+
+.submitButton::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  opacity: 0;
+  background: linear-gradient(100deg, transparent 18%, rgba(255, 255, 255, 0.24), transparent 82%);
+  transform: translateX(-100%);
+  transition: opacity 180ms ease;
+}
+
+.submitButton:hover::after {
+  opacity: 1;
+  animation: button-shine 1.05s ease;
+}
+
+.qrGrid {
+  display: grid;
+  grid-template-columns: repeat(21, minmax(0, 1fr));
+  grid-template-rows: repeat(21, minmax(0, 1fr));
+}
+
+@keyframes aurora-drift {
+  from { transform: translate3d(-2%, -2%, 0) scale(0.95); }
+  to { transform: translate3d(18%, 14%, 0) scale(1.1); }
+}
+
+@keyframes aurora-drift-secondary {
+  from { transform: translate3d(0, 0, 0) scale(0.96); }
+  to { transform: translate3d(-18%, -12%, 0) scale(1.08); }
+}
+
+@keyframes scan-drift {
+  from { transform: translateX(-15vw) rotate(22deg); opacity: 0.1; }
+  to { transform: translateX(24vw) rotate(22deg); opacity: 0.32; }
+}
+
+@keyframes mark-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes button-shine {
+  to { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .auroraSecondary,
+  .scanBeam,
+  .brandMark::before,
+  .submitButton:hover::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .page {
+    overflow-y: auto;
+  }
+}

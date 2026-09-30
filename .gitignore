@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.local/
+.codex-artifacts/
+.runtime-data/
+artifacts/
+dist/
+video-production/
+submission-work/
+.git/
+.env.local
+.env
+*.log
+*.tsbuildinfo
+.DS_Store
+.coze/
+.preview*
